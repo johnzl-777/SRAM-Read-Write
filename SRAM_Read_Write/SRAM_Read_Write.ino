@@ -112,15 +112,15 @@ void write_data(uint16_t address, uint8_t data)
   /*
    * Write operation uses a WE (Write Enabled Controlled) Write Cycle.
    */
-  OE_LOW();  //OE is continuously LOW
-  CE_LOW();  //CE is continuously LOW
-  WE_HIGH();  //WE starts off HIGH
+  OE_LOW();             //OE is continuously LOW
+  CE_LOW();             //CE is continuously LOW
+  WE_HIGH();            //WE starts off HIGH
   delay(1);             //Delay just to ensure signals stay HIGH/LOW long enough
   
   set_addr(address);    //Address applied first
-  WE_LOW();  //WE goes from HIGH to LOW
+  WE_LOW();             //WE goes from HIGH to LOW
   data_op('w', data);   //Data applied to data bus
-  WE_HIGH();  //WE goes from LOW to HIGH
+  WE_HIGH();            //WE goes from LOW to HIGH
 
 }
 
@@ -140,7 +140,7 @@ uint8_t read_data(uint16_t address)
   CE_LOW();      //CE set to LOW at all times for Type 1 Read
   
   set_addr(address);        //Address applied first
-  return (data_op('r',0));  //Read data operation is committed, data obtained is returned
+  return (data_op('r', NULL));  //Read data operation is committed, data obtained is returned
   
 }
 
@@ -164,7 +164,7 @@ void set_addr (uint16_t address)
 
 uint8_t data_op (char rw, uint8_t data)
 {
-  if(rw == 'w') // If 
+  if(rw == 'w') 
   {
     /*
      * If RW option is set to char 'w' for WRITE
