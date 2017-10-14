@@ -81,7 +81,7 @@ Arguments:
  __`read_data()`__
  
  Arguments: 
- * `uint_16t address` - 16 bit unsigned integer that takes in the address of the memory location to be read
+ * `uint16_t address` - 16 bit unsigned integer that takes in the address of the memory location to be read
  
  1. WE (Write Enable) is set to high for duration of the function
  2. OE (Output Enable) is set to low for duration of the function
@@ -98,10 +98,10 @@ Arguments:
  As mentioned before, this is by no means a thorough testing algorithm and is just something to show how all the functions
  presented would work in a real program
  
- 1. Variable `uint_16t address` is declared and unitialized
- 2. Variable `uint_8t random_data` is declared and unitialized
+ 1. Variable `uint16_t address` is declared and unitialized
+ 2. Variable `uint8_t random_data` is declared and unitialized
  3. The random number generator seed is chosen by a random read of the Analog I/O pin A0
- 4. A "for" loop is set up that increments the `uint_16t address` variable up to 0x7FF 
+ 4. A "for" loop is set up that increments the `uint16_t address` variable up to 0x7FF 
      * For each cycle, the `random_data` variable is set to some random number between 0x00 and 0xFF.
      * The `write_data()` function is called with the arguments `address` and `random_data` 
      * an "if" statement is put in place that calls `read_data()` with `address` as an argument and tests for equality with `random_data`
