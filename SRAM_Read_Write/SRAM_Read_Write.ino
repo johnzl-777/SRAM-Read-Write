@@ -54,6 +54,7 @@ void loop()
     
     uint16_t address;                               //Declare address variable
     uint8_t random_data;                            //Declare random data variable
+    char print_str[39];                             //Declare char array used for formatted printing
     randomSeed(analogRead(A0));                     //Initialize random number generator using signal from pin AO
     
     for (address = 0; address < 0x8000; ++address)  //Start at 0, sequence through all (2^15) - 1 addresses
@@ -66,17 +67,8 @@ void loop()
          * If data read from address is equal to random data generated,
          * Print Address and Data Written in Hexadecimal as well as memory status as "PASS"
          */
-        Serial.print("Address:");
-        Serial.print(" ");
-        Serial.print(address, HEX);
-        Serial.print(" ");
-        Serial.print("Data Written:");
-        Serial.print(" ");
-        Serial.print(random_data, HEX);
-        Serial.print(" ");
-        Serial.print("Status: ");
-        Serial.print("PASS");
-        Serial.print("\n");
+        sprintf(print_str, "Address: %04X Data Written: %02X Status: PASS", address, random_data);
+        Serial.println(print_str);
       }
       else
       {
@@ -84,17 +76,8 @@ void loop()
          * If data read from address is NOT equal to random data generated,
          * Print Address and Data Written in Hexadecimal as well as memory status as "FAIL"
          */
-        Serial.print("Address:");
-        Serial.print(" ");
-        Serial.print(address, HEX);
-        Serial.print(" ");
-        Serial.print("Data Written:");
-        Serial.print(" ");
-        Serial.print(random_data, HEX);
-        Serial.print(" ");
-        Serial.print("Status: ");
-        Serial.print("FAIL");
-        Serial.print("\n");
+         sprintf(print_str, "Address: %04X Data Written: %02X Status: FAIL", address, random_data);
+         Serial.println(print_str);
       }
     }
 
